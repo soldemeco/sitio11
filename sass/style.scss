@@ -1,0 +1,116 @@
+body{
+	font-family: Arial, Helvetica, sans-serif;
+}
+
+.boton{
+	background: black;
+	color: white;
+	display: inline-block;
+	padding: 10px 30px;
+	border-radius: 5px;
+	font-size: 16px;
+}
+
+.boton-rojo{
+	@extend .boton;
+	background: red;
+}
+
+.boton-chico{
+	@extend .boton;
+	font-size: 14px;
+	padding: 5px 15px;
+}
+
+.boton-grande{
+	@extend .boton;
+	font-size: 20px;
+}
+
+.boton-linea{
+	@extend .boton;
+	background: none;
+	border: 1px solid #444;
+	color: #333;
+}
+
+.boton-x{
+	@extend .boton;
+	background: #456783;
+	transition: .5s;
+	&hover{
+		background: darken(#456783,15%);
+		transform: scale(1.1);
+	}
+}
+
+@mixin border-radius($radio){
+	-moz-border-radius: $radio;
+	-o-border-radius: $radio;
+	-ms-border-radius: $radio;
+	-webkit-border-radius: $radio;
+	border-radius: $radio;
+}
+
+@mixin box-shadow($offsetv, $offseth, $blur, $colorx){
+	-moz-box-shadow: $offsetv $offseth $blur $colorx;
+	-o-box-shadow: $offsetv $offseth $blur $colorx;
+	-ms-box-shadow: $offsetv $offseth $blur $colorx;
+	-webkit-box-shadow: $offsetv $offseth $blur $colorx;
+	box-shadow: $offsetv $offseth $blur $colorx;
+}
+
+.circulo{
+	@include box-shadow(5px, 5px, 10px, rgba(0,0,0,0.5));
+	@include border-radius(50%);
+	background: pink;
+	height: 100px;
+	width: 100px;
+}
+
+@mixin hacercirculos($tamano, $color){
+	width: $tamano;
+	height: $tamano;
+	background: $color;
+	display: inline-block;
+	@include border-radius(50%);
+}
+
+.circulo1{
+	@include hacercirculos(100px, red);
+}
+
+.circulo2{
+	@include hacercirculos(200px, green);
+}
+
+.circulo3{
+	@include hacercirculos(150px, blue);
+}
+
+@mixin hacerbotones($colortexto, $colorfondo, $radioborde, $paddingvertical, $paddinglateral, $tamanofuente){
+	display: inline-block;
+	text-decoration: none;
+	color: $colortexto;
+	background: $colorfondo;
+	border-radius: $radioborde;
+	padding: $paddingvertical $paddinglateral;
+	font-size: $tamanofuente;
+	transition: 1s;
+	&:hover{
+		transform: scale(1.1);
+		background: darken($colorfondo, 15%);
+	}
+}
+
+.boton-mx1{
+	@include hacerbotones(black, pink, 10%, 30px, 15px, 15px);
+}
+
+.boton-mx2{
+	@include hacerbotones(#349824, yellow, 10%, 30px, 15px, 20px);
+}
+
+.boton-mx3{
+	@include hacerbotones(black, green, 10%, 30px, 15px, 15px);
+}
